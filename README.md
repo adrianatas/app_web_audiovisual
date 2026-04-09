@@ -5,7 +5,7 @@ El stack tecnológico usado:
 - Python 3.13
 - Framework principal Flask porque me resulto más fácil
 
-- - SQLAlchemy para gestión de base de datos.
+- SQLAlchemy para gestión de base de datos.
 - Flask-Login para autentificación.
 - Bootstrap para el diseño, HTML y CSS (el HTML y CSS los he puesto unidos, es decir en cada template/home.html, template/catalogo.html, template/login.html, etc es donde esta el CSS.)
 
