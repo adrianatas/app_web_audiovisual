@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #141414;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .table {
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #e50914;
+            border: none;
+        }
+        .btn-warning {
+            background-color: #ffa00a;
+            border: none;
+        }
+        .navbar {
+            background-color: #141414 !important;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Mi Mundo Audiovisual</a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesión</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5 pt-5">
+    <h2>Usuarios</h2>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.username }}</td>
+                <td>{{ u.role }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Contenidos</h2>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Duración</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contenidos %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.titulo }}</td>
+                <td>{{ c.tipo }}</td>
+                <td>{{ c.categoria }}</td>
+                <td>
+                    {% if c.tipo == 'pelicula' %}
+                        {{ c.duracion }} min
+                    {% else %}
+                        {{ c.temporadas }} temporadas / {{ c.capitulos }} capítulos / {{ c.duracion_capitulo }} min cap
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Mundo Audiovisual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+        }
+
+        /* Imagen de fondo */
+        .bg-home {
+            background-image: url("{{ url_for('static', filename='images/fondo_home.jpg') }}");
+            background-size: cover;       /* Ocupa toda la pantalla */
+            background-position: center;  /* Centra la imagen */
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Overlay oscuro encima de la imagen para resaltar texto */
+        .bg-home::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.5); /* Transparencia negra */
+        }
+
+        .home-content {
+            position: relative;  /* Para que quede sobre el overlay */
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: #e50914;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-home">
+        <div class="home-content">
+            <h1 style="font-size:4rem;">Bienvenido a Mi Mundo Audiovisual</h1>
+            <p style="font-size:1.2rem;">Disfruta de tus películas y series favoritas</p>
+            <a href="/catalogo" class="btn btn-primary btn-lg mt-3">Ver Catálogo</a>
+        </div>
+    </div>
+</body>
+</html>

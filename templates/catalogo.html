@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catálogo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #141414;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .card {
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #e50914;
+            border: none;
+        }
+        .btn-warning {
+            background-color: #ffa00a;
+            border: none;
+        }
+        .navbar {
+            background-color: #141414 !important;
+        }
+        form.buscar {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        form.buscar input[type="text"] {
+            width: 50%;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Mi Mundo Audiovisual</a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/favoritos">Favoritos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/vistos">Vistos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesión</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5 pt-5">
+    <!-- Buscador -->
+    <form class="buscar" method="GET" action="/buscar">
+        <input type="text" name="q" placeholder="Buscar películas o series...">
+        <button type="submit" class="btn btn-warning btn-sm">Buscar</button>
+    </form>
+
+    <!-- Películas -->
+    <h2>Películas</h2>
+    <div class="row">
+        {% for p in peliculas %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="{{ url_for('static', filename=p.imagen) }}" class="card-img-top" alt="{{ p.titulo }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.titulo }}</h5>
+                    <p class="card-text">Duración: {{ p.duracion }} min</p>
+                    <a href="{{ url_for('visto', content_id=p.id) }}" class="btn btn-primary btn-sm me-1">Visto</a>
+                    <a href="{{ url_for('favorito', content_id=p.id) }}" class="btn btn-warning btn-sm">Favorito</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <!-- Series -->
+    <h2>Series</h2>
+    <div class="row">
+        {% for s in series %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="{{ url_for('static', filename=s.imagen) }}" class="card-img-top" alt="{{ s.titulo }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ s.titulo }}</h5>
+                    <p class="card-text">
+                        Temporadas: {{ s.temporadas }}<br>
+                        Capítulos: {{ s.capitulos }}<br>
+                        Duración cap.: {{ s.duracion_capitulo }} min
+                    </p>
+                    <a href="{{ url_for('visto', content_id=s.id) }}" class="btn btn-primary btn-sm me-1">Visto</a>
+                    <a href="{{ url_for('favorito', content_id=s.id) }}" class="btn btn-warning btn-sm">Favorito</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
